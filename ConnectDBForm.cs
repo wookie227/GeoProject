@@ -10,18 +10,12 @@ namespace GeoProject
         public ConnectDBForm()
         {
             InitializeComponent();
-            LoadServers();
-        }
-        private void LoadServers()
-        {
-            comboBoxServers.Items.Add("DESKTOP-591T9LE");
-            comboBoxServers.Items.Add("DESKTOP");
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
 
-            string server = comboBoxServers.SelectedItem?.ToString();
+            string server = txtServerName.Text;
             string databaseName = txtDBName.Text;
 
             string connectionString = $"Data Source={server};Integrated Security=True;Connect Timeout=5;";

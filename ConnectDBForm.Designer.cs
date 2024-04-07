@@ -28,46 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            comboBoxServers = new ComboBox();
             txtDBName = new TextBox();
             btnConnect = new Button();
+            txtServerName = new TextBox();
             SuspendLayout();
-            // 
-            // comboBoxServers
-            // 
-            comboBoxServers.Font = new Font("Segoe UI", 15F);
-            comboBoxServers.FormattingEnabled = true;
-            comboBoxServers.Location = new Point(285, 127);
-            comboBoxServers.Name = "comboBoxServers";
-            comboBoxServers.Size = new Size(169, 36);
-            comboBoxServers.TabIndex = 0;
             // 
             // txtDBName
             // 
             txtDBName.Font = new Font("Segoe UI", 15F);
-            txtDBName.Location = new Point(285, 200);
+            txtDBName.Location = new Point(41, 117);
             txtDBName.Name = "txtDBName";
+            txtDBName.PlaceholderText = "Название БД";
             txtDBName.Size = new Size(169, 34);
             txtDBName.TabIndex = 1;
             // 
             // btnConnect
             // 
-            btnConnect.Location = new Point(339, 260);
+            btnConnect.Location = new Point(67, 170);
             btnConnect.Name = "btnConnect";
-            btnConnect.Size = new Size(75, 23);
+            btnConnect.Size = new Size(115, 49);
             btnConnect.TabIndex = 2;
-            btnConnect.Text = "button1";
+            btnConnect.Text = "Подключиться";
             btnConnect.UseVisualStyleBackColor = true;
             btnConnect.Click += btnConnect_Click;
+            // 
+            // txtServerName
+            // 
+            txtServerName.Font = new Font("Segoe UI", 15F);
+            txtServerName.Location = new Point(41, 59);
+            txtServerName.Name = "txtServerName";
+            txtServerName.PlaceholderText = "Название сервера";
+            txtServerName.Size = new Size(169, 34);
+            txtServerName.TabIndex = 3;
             // 
             // ConnectDBForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(253, 254);
+            Controls.Add(txtServerName);
             Controls.Add(btnConnect);
             Controls.Add(txtDBName);
-            Controls.Add(comboBoxServers);
             Name = "ConnectDBForm";
             Text = "ConnectDBForm";
             ResumeLayout(false);
@@ -76,7 +77,7 @@
 
         #endregion
         private Button btnConnect;
-        public ComboBox comboBoxServers;
         public TextBox txtDBName;
+        protected TextBox txtServerName;
     }
 }
