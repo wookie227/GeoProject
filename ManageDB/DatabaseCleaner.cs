@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GeoProject.Database;
+using GeoProject.Models;
 
 namespace GeoProject.ManageDB
 {
@@ -11,7 +12,7 @@ namespace GeoProject.ManageDB
     {
         public static void Clean()
         {
-            using (var db = new database())
+            using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
                 // Очистка данных из всех таблиц
 

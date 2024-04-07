@@ -1,5 +1,6 @@
 using GeoProject.Database;
 using GeoProject.ManageDB;
+using GeoProject.Models;
 namespace GeoProject
 {
     public partial class ListProjectsForm : Form
@@ -12,7 +13,7 @@ namespace GeoProject
 
         private void ListProjectsForm_Load(object sender, EventArgs e)
         {
-            using (var db = new database())
+            using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
                 var projects = db.Projects.ToList();
                 foreach (var project in projects)
@@ -33,13 +34,30 @@ namespace GeoProject
         private void btnCleanDB_Click(object sender, EventArgs e)
         {
             DatabaseCleaner.Clean();
-            listProjectsPanel.Update();
+            //istProjectsPanel.Refresh();
+            Refresher();
         }
 
         private void btnSeedDB_Click(object sender, EventArgs e)
         {
             DatabaseSeeder.Seed();
-            this.listProjectsPanel.Update();
+            Refresher();
+            //this.listProjectsPanel.Refresh();
+        }
+        public void Refresher()
+        {
+            listProjectsPanel.Controls.Clear();
+            using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
+            {
+                var projects = db.Projects.ToList();
+                foreach (var project in projects)
+                {
+                    var listProjectsControl = new ListProjects();
+                    listProjectsControl.SetProject(project);
+                    listProjectsControl.MoreDetailsClicked += ListProjectsControl_MoreDetailsClicked;
+                    listProjectsPanel.Controls.Add(listProjectsControl);
+                }
+            }
         }
     }
 }

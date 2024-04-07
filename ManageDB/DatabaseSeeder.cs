@@ -14,7 +14,7 @@ namespace GeoProject.ManageDB
         public static void Seed()
         {
             
-            using (var db = new database())
+            using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
                 // Заполнение базы данных синтетическими данными
 

@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using GeoProject.Models;
 using GeoProject.Database;
-using System.Globalization;
-using Microsoft.IdentityModel.Tokens;
+
 
 namespace GeoProject
 {
@@ -25,7 +17,6 @@ namespace GeoProject
             ControlHelper.RoundControl(activePanel, 15);
             ControlHelper.RoundControl(cmbListAreas, 15);
             ControlHelper.RoundControl(cmbListProfiles, 15);
-            ControlHelper.RoundControl(btnGeoInfo, 15);
             ControlHelper.RoundControl(btnGraphs, 15);
             ControlHelper.RoundControl(btnAddArea, 15);
             ControlHelper.RoundControl(btnAddProfile, 15);
@@ -36,7 +27,7 @@ namespace GeoProject
         {
             lblTitleProject.Text = project.ProjectName;
             int projectId = project.ProjectId;
-            using (var db = new database())
+            using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
                 var areaIds = db.Areas
                                 .Where(a => a.ProjectId == projectId)
@@ -49,7 +40,7 @@ namespace GeoProject
         private void cmbListAreas_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedAreaId = Convert.ToInt32(cmbListAreas.SelectedValue);
-            using (var db = new database())
+            using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
                 var profileIds = db.Profiles
                                     .Where(p => p.AreaId == selectedAreaId)
@@ -63,7 +54,7 @@ namespace GeoProject
 
         private void LoadElectrodes(int profileId)
         {
-            using (var db = new database())
+            using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
                 // Получаем электроды для выбранного профиля
                 var electrodes = db.ElectrodesCoordinates
@@ -100,7 +91,7 @@ namespace GeoProject
 
             ProfileModel selectedProfile;
             // Получаем выбранный профиль
-            using (var db = new database())
+            using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
                 int profileId = (int)cmbListProfiles.SelectedValue;
                 selectedProfile = db.Profiles.FirstOrDefault(p => p.ProfileId == profileId);
@@ -120,7 +111,7 @@ namespace GeoProject
                 return;
             }
             AreaModel selectedArea;
-            using (var db = new database())
+            using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
                 int areaId = (int)cmbListAreas.SelectedValue;
                 selectedArea = db.Areas.FirstOrDefault(a => a.AreaId == areaId);
@@ -140,7 +131,7 @@ namespace GeoProject
         private void btnGraphs_Click(object sender, EventArgs e)
         {
             ProfileModel selectedProfile;
-            using (var db = new database())
+            using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
                 int profileId = (int)cmbListProfiles.SelectedValue;
                 selectedProfile = db.Profiles.FirstOrDefault(p => p.ProfileId == profileId);

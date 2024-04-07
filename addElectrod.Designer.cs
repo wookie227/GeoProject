@@ -78,7 +78,7 @@
             txtDate.Font = new Font("Segoe UI", 20F);
             txtDate.Location = new Point(39, 281);
             txtDate.Name = "txtDate";
-            txtDate.PlaceholderText = "Дата и время";
+            txtDate.PlaceholderText = "DD.MM.YYYY hh:mm:ssss ";
             txtDate.Size = new Size(224, 43);
             txtDate.TabIndex = 4;
             // 

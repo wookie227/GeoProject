@@ -1,13 +1,4 @@
 ﻿using GeoProject.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using GeoProject.Database;
 
 namespace GeoProject
@@ -24,7 +15,7 @@ namespace GeoProject
 
         private void btnAddArea_Click(object sender, EventArgs e)
         {
-            using (var db = new database())
+            using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
                 var newArea = new AreaModel
                 {

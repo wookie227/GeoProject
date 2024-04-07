@@ -37,7 +37,6 @@
             btnAddProfile = new Button();
             btnAddArea = new Button();
             btnGraphs = new Button();
-            btnGeoInfo = new Button();
             activePanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,7 +51,6 @@
             activePanel.Controls.Add(btnAddProfile);
             activePanel.Controls.Add(btnAddArea);
             activePanel.Controls.Add(btnGraphs);
-            activePanel.Controls.Add(btnGeoInfo);
             activePanel.Location = new Point(44, 77);
             activePanel.Margin = new Padding(0);
             activePanel.Name = "activePanel";
@@ -146,24 +144,13 @@
             // 
             btnGraphs.FlatAppearance.BorderSize = 0;
             btnGraphs.Font = new Font("Segoe UI", 15F);
-            btnGraphs.Location = new Point(20, 291);
+            btnGraphs.Location = new Point(20, 214);
             btnGraphs.Name = "btnGraphs";
             btnGraphs.Size = new Size(231, 55);
             btnGraphs.TabIndex = 3;
             btnGraphs.Text = "График по профилю";
             btnGraphs.UseVisualStyleBackColor = true;
             btnGraphs.Click += btnGraphs_Click;
-            // 
-            // btnGeoInfo
-            // 
-            btnGeoInfo.FlatAppearance.BorderSize = 0;
-            btnGeoInfo.Font = new Font("Segoe UI", 15F);
-            btnGeoInfo.Location = new Point(20, 212);
-            btnGeoInfo.Name = "btnGeoInfo";
-            btnGeoInfo.Size = new Size(231, 53);
-            btnGeoInfo.TabIndex = 2;
-            btnGeoInfo.Text = "Геологические данные";
-            btnGeoInfo.UseVisualStyleBackColor = true;
             // 
             // SelectedProjectForm
             // 
@@ -185,7 +172,6 @@
         private Button btnAddProfile;
         private Button btnAddArea;
         private Button btnGraphs;
-        private Button btnGeoInfo;
         private ComboBox cmbListAreas;
         private ComboBox cmbListProfiles;
         private Label lblTitleProject;
