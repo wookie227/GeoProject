@@ -31,11 +31,6 @@ namespace GeoProject
                     {
                         var result = command.ExecuteScalar();
                         int databaseCount = Convert.ToInt32(result);
-                        if (databaseCount <= 0)
-                        {
-                            MessageBox.Show("База данных не существует или отсутствует подключение.");
-                            return;
-                        }
 
                         MessageBox.Show($"Количество баз данных с именем '{databaseName}': {databaseCount}");
                     }
