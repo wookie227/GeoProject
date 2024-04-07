@@ -34,7 +34,6 @@ namespace GeoProject
         private void btnCleanDB_Click(object sender, EventArgs e)
         {
             DatabaseCleaner.Clean();
-            //istProjectsPanel.Refresh();
             Refresher();
         }
 
@@ -42,7 +41,6 @@ namespace GeoProject
         {
             DatabaseSeeder.Seed();
             Refresher();
-            //this.listProjectsPanel.Refresh();
         }
         public void Refresher()
         {

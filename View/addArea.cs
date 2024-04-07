@@ -23,7 +23,6 @@ namespace GeoProject
                     Coordinates = txtAreaCoords.Text,
                     ProjectId = _selectedProject.ProjectId,
                 };
-                // Добавляем профиль в базу данных
                 db.Areas.Add(newArea);
                 db.SaveChanges();
             }

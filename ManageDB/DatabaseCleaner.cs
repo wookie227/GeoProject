@@ -14,23 +14,15 @@ namespace GeoProject.ManageDB
         {
             using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
-                // Очистка данных из всех таблиц
-
-                // Удаление всех электродов
                 db.ElectrodesCoordinates.RemoveRange(db.ElectrodesCoordinates);
 
-                // Удаление всех профилей
                 db.Profiles.RemoveRange(db.Profiles);
 
-                // Удаление всех площадей
                 db.Areas.RemoveRange(db.Areas);
 
-                // Удаление всех проектов
                 db.Projects.RemoveRange(db.Projects);
 
-                // Сохранение изменений в базе данных
                 db.SaveChanges();
-
             }
         }
     }

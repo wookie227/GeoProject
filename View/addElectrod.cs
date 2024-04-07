@@ -20,7 +20,6 @@ namespace GeoProject
             
             using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
-                // Создаем новый электрод
                 double value;
                 DateTime dateTime;
                 if (!double.TryParse(txtValueElectrod.Text, out value))
@@ -39,10 +38,9 @@ namespace GeoProject
                     ElectrodeType = txtTypeElectrod.Text,
                     Value = value,
                     DateTime = dateTime,
-                    ProfileId = _selectedProfile.ProfileId // Устанавливаем профиль для электрода
+                    ProfileId = _selectedProfile.ProfileId
                 };
 
-                // Добавляем электрод в базу данных
                 db.ElectrodesCoordinates.Add(newElectrode);
                 db.SaveChanges();
             }

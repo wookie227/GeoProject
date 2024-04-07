@@ -56,15 +56,12 @@ namespace GeoProject
         {
             using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
-                // Получаем электроды для выбранного профиля
                 var electrodes = db.ElectrodesCoordinates
                                     .Where(ec => ec.ProfileId == profileId)
                                     .ToList();
 
-                // Очищаем FlowLayoutPanel перед добавлением новых контролов
                 ListElectrods.Controls.Clear();
 
-                // Для каждого электрода создаем пользовательский контрол и добавляем его в FlowLayoutPanel
                 foreach (var electrode in electrodes)
                 {
                     var listElectrodeControl = new ListElectods();
@@ -82,7 +79,6 @@ namespace GeoProject
 
         private void btnAddElectod_Click(object sender, EventArgs e)
         {
-            // Проверяем, выбран ли профиль
             if (cmbListProfiles.SelectedItem == null)
             {
                 MessageBox.Show("Сначала выберите профиль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -90,15 +86,11 @@ namespace GeoProject
             }
 
             ProfileModel selectedProfile;
-            // Получаем выбранный профиль
             using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
                 int profileId = (int)cmbListProfiles.SelectedValue;
                 selectedProfile = db.Profiles.FirstOrDefault(p => p.ProfileId == profileId);
             }
-
-
-            // Открываем форму для добавления электрода и передаем информацию о выбранном профиле
             var addElectrodeForm = new addElectrod(selectedProfile);
             addElectrodeForm.ShowDialog();
         }

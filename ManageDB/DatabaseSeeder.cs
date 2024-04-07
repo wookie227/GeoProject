@@ -16,9 +16,6 @@ namespace GeoProject.ManageDB
             
             using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
-                // Заполнение базы данных синтетическими данными
-
-                // Создание 5 проектов
                 for (int i = 1; i <= 5; i++)
                 {
                     var project = new ProjectModel
@@ -28,7 +25,6 @@ namespace GeoProject.ManageDB
                     };
                     db.Projects.Add(project);
 
-                    // Создание 10 площадей для каждого проекта
                     for (int j = 1; j <= 10; j++)
                     {
                         var area = new AreaModel
@@ -39,18 +35,15 @@ namespace GeoProject.ManageDB
                         };
                         db.Areas.Add(area);
 
-                        // Создание 15 профилей для каждой площади
                         for (int k = 1; k <= 15; k++)
                         {
                             var profile = new ProfileModel
                             {
                                 Coordinates = GenerateRandomCoordinates1(),
-                                // Другие свойства профиля
                                 Area = area
                             };
                             db.Profiles.Add(profile);
 
-                            // Создание 20 электродов для каждого профиля
                             for (int l = 1; l <= 20; l++)
                             {
                                 var electrode = new ElectrodeModel
@@ -67,7 +60,6 @@ namespace GeoProject.ManageDB
                     }
                 }
 
-                // Сохранение изменений в базе данных
                 db.SaveChanges();
             }
 
@@ -75,30 +67,27 @@ namespace GeoProject.ManageDB
         private static string GenerateRandomCoordinates()
         {
 
-            double latitude = Math.Round((random.NextDouble() * 200) - 100, 1); // От -100 до 100
-            double longitude = Math.Round((random.NextDouble() * 200) - 100, 1); // От -100 до 100
+            double latitude = Math.Round((random.NextDouble() * 200) - 100, 1);
+            double longitude = Math.Round((random.NextDouble() * 200) - 100, 1);
 
             return $"{latitude} {longitude}";
         }
         private static string GenerateRandomCoordinates1()
         {
-            double latitude = Math.Round((random.NextDouble() * 150) - 75, 1); // От -75 до 75
-            double longitude = Math.Round((random.NextDouble() * 150) - 75, 1); // От -75 до 75
+            double latitude = Math.Round((random.NextDouble() * 150) - 75, 1);
+            double longitude = Math.Round((random.NextDouble() * 150) - 75, 1);
 
             return $"{latitude} {longitude}";
         }
         private static DateTime GenerateRandomDateTime()
         {
-            DateTime startDate = new DateTime(2023, 1, 1); // Начальная дата для генерации
-            DateTime endDate = new DateTime(2023, 12, 31); // Конечная дата для генерации
+            DateTime startDate = new DateTime(2023, 1, 1);
+            DateTime endDate = new DateTime(2023, 12, 31);
 
-            // Генерируем случайную дату в заданном диапазоне
             DateTime randomDate = startDate.AddDays(random.NextDouble() * (endDate - startDate).TotalDays);
 
-            // Генерируем случайное время в пределах суток
             TimeSpan randomTimeSpan = TimeSpan.FromHours(random.Next(0, 24)) + TimeSpan.FromMinutes(random.Next(0, 60)) + TimeSpan.FromSeconds(random.Next(0, 60));
 
-            // Объединяем дату и время
             return randomDate.Date + randomTimeSpan;
         }
 

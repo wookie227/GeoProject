@@ -36,22 +36,5 @@ namespace GeoProject.Database
         {
             optionsBuilder.UseSqlServer($"Data Source = { _serverName }; Initial Catalog = { _databaseName }; Integrated Security = True; Connect Timeout = 30; Encrypt = True; Trust Server Certificate = True; Application Intent = ReadWrite; Multi Subnet Failover = False");
         }
-
-        public bool CheckDatabaseExists(string server, string databaseName)
-        {
-            string connectionString = $"Data Source={server};Integrated Security=True;Connect Timeout=30;";
-
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                var query = $"SELECT COUNT(*) FROM sys.databases WHERE name = '{databaseName}'";
-                using (var command = new SqlCommand(query, connection))
-                {
-                    var result = command.ExecuteScalar();
-                    return Convert.ToInt32(result) > 0;
-                }
-            }
-        }
     }
 }

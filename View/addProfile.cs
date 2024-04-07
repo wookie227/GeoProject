@@ -17,16 +17,11 @@ namespace GeoProject
         {
             using (var db = new MyDBContext(Singleton.Instance.NameServer, Singleton.Instance.NameDatabase))
             {
-                // Создаем новый профиль
                 var newProfile = new ProfileModel
                 {
                     Coordinates = txtProfileCoords.Text,
-                    // Другие поля профиля
-
-                    AreaId = _selectedArea.AreaId // Устанавливаем площадь для профиля
+                    AreaId = _selectedArea.AreaId
                 };
-
-                // Добавляем профиль в базу данных
                 db.Profiles.Add(newProfile);
                 db.SaveChanges();
             }
